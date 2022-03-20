@@ -1,6 +1,6 @@
 class Solution {
     public int climbStairs(int n) {
-        int memo[] = new int[Math.max(2,n)];
+        int memo[] = new int[n+1];
         memo[0]=1;
         memo[1]=2;
         if (n<=2) return n;
