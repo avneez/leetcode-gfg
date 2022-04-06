@@ -20,10 +20,10 @@ class Solution {
 	    memset(visited, false, sizeof(visited));
 	
 	    vector <int> res;
-	    for (int i = 0; i < V; i++)
-	        if (!visited[i]){
-	            DFSUtil (i, adj, visited, res);
-	        }
+	    for(int i=0;i<V;i++){
+            if(visited[i]==false)
+                DFSUtil(i,adj,visited,res);
+        }
 	    return res;
     }
 };
