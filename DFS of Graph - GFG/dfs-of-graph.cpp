@@ -18,12 +18,13 @@ class Solution {
 	vector<int> dfsOfGraph(int V, vector<int> adj[]){
 	    bool visited[V];
 	    memset(visited, false, sizeof(visited));
-	
+	    int s;
 	    vector <int> res;
-	    for(int i=0;i<V;i++){
-            if(visited[i]==false)
-                DFSUtil(i,adj,visited,res);
-        }
+	   // for (int i = 0; i < V; i++)
+	   //     if (!visited[i]){
+	   //         DFSUtil (i, adj, visited, res);
+	   //     }
+	    DFSUtil(s,adj,visited,res);
 	    return res;
     }
 };
