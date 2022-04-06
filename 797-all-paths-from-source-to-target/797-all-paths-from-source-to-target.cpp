@@ -2,7 +2,7 @@ class Solution {
 public:
     void dfs(vector<vector<int>>& graph, vector<int> &path, int src, vector<vector<int>> &ans) {
         path.push_back(src);
-        if(src==graph.size()-1) 
+        if(src==graph.size()-1) //src has arrives the target
             ans.push_back(path);
         else {
             for(auto it: graph[src]) 
