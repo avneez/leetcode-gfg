@@ -17,10 +17,11 @@ public:
             }
         }
         else if( k < 0 ){
+            k*=-1;
             for( int index = n-1; index >= 0 ; index-- ){
                 int i = 1;
                 int temp = 0;
-                while( i <= (-k)){
+                while( i <= (k)){
                     int j = index-i;
                     if( j < 0 ) j+=n;
                     temp +=code[j];
