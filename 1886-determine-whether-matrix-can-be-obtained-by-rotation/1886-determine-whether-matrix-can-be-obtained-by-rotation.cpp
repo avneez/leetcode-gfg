@@ -14,11 +14,11 @@ public:
         int n = mat.size();
         reverse(mat.begin(), mat.end());
         for(int i=0; i<n; i++){
-            for(int j=i+1; j<n; j++){
+            for(int j=0; j<i; j++){
                 swap(mat[i][j],mat[j][i]);
             }
         }
-    }
+    }   
     
      bool findRotation(vector<vector<int>>& mat, vector<vector<int>>& target) {
         for(int i = 0;i<4; i++){
