@@ -3,20 +3,17 @@ public:
     vector<string> divideString(string s, int k, char fill) {
         int n = s.size();
         vector<string> ans;
-        for(int i=0;i<n;i+=k){
-            string div = s.substr(i,k);
-            int j = s.substr(i,k).size();
-            if(j<k){
-                int lengthRem = s.substr(i,n).size();
-                int t = k-lengthRem;
-                string temp = s.substr(i,n);
-                while(t--){
-                    temp+=fill;
-                }
-                ans.push_back(temp);
-            }
-            else ans.push_back(div);
+        string temp="";
+        int x=n%k;
+        if(x!=0){
+            for(int i=0;i<k-x;i++) 
+                s+=fill;
         }
+        
+        for(int i=0;i<s.size();i=i+k){
+            temp=s.substr(i,k);
+            ans.push_back(temp);  
+        }    
         return ans;
     }
 };
