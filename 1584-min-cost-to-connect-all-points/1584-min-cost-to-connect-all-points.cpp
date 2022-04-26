@@ -2,41 +2,38 @@ class Solution {
 public:
     int minCostConnectPoints(vector<vector<int>>& points) {
         int n = points.size();
-        
-        // Min-heap to store minimum weight edge at top.
-        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> heap;
-        
-        // Track nodes which are included in MST.
-        vector<bool> inMST(n);
-        
-        heap.push({ 0, 0 });
         int mstCost = 0;
         int edgesUsed = 0;
         
+        // Track nodes which are visited.
+        vector<bool> inMST(n);
+        
+        vector<int> minDist(n, INT_MAX);
+        minDist[0] = 0;
+        
         while (edgesUsed < n) {
-            pair<int, int> topElement = heap.top();
-            heap.pop();
+            int currMinEdge = INT_MAX;
+            int currNode = -1;
             
-            int weight = topElement.first;
-            int currNode = topElement.second;
-            
-            // If node was already included in MST we will discard this edge.
-            if (inMST[currNode]) {
-                continue;
+            // Pick least weight node which is not in MST.
+            for (int node = 0; node < n; ++node) {
+                if (!inMST[node] && currMinEdge > minDist[node]) {
+                    currMinEdge = minDist[node];
+                    currNode = node;
+                }
             }
             
-            inMST[currNode] = true;
-            mstCost += weight;
+            mstCost += currMinEdge;
             edgesUsed++;
+            inMST[currNode] = true;
             
+            // Update adjacent nodes of current node.
             for (int nextNode = 0; nextNode < n; ++nextNode) {
-                // If next node is not in MST, then edge from curr node
-                // to next node can be pushed in the priority queue.
-                if (!inMST[nextNode]) {
-                    int nextWeight = abs(points[currNode][0] - points[nextNode][0]) + 
-                                     abs(points[currNode][1] - points[nextNode][1]);
-                    
-                    heap.push({ nextWeight, nextNode });
+                int weight = abs(points[currNode][0] - points[nextNode][0]) + 
+                             abs(points[currNode][1] - points[nextNode][1]);
+                
+                if (!inMST[nextNode] && minDist[nextNode] > weight) {
+                    minDist[nextNode] = weight;
                 }
             }
         }
