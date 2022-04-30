@@ -1,46 +1,58 @@
 class Solution {
 public:
-bool isBipartiteHelper(vector<vector<int>>& graph, vector<int>& color, int startNode){
-        
-        bool ans = true;
-        int n = graph.size();
-        queue<int> q;        
-        int currentColor = -1;
-        q.push(startNode);
-        color[startNode] = currentColor;
-        
-        while(!q.empty()){
-            
-            int frontNode = q.front();            
-            
-            for(int i = 0; i < graph[frontNode].size(); i++){
-                 if(color[graph[frontNode][i]] == 0){
-                    q.push(graph[frontNode][i]);
-                    color[graph[frontNode][i]] = -1*color[frontNode];
-                    
-                }else if(color[graph[frontNode][i]] == color[frontNode]){
-                    return false;
+    
+   bool isBipartite(vector<vector<int>>& graph){ 
+        int n=graph.size();
+        vector<int> color(n,0);    
+        for(int i=0;i<n;i++){                // traverse each component
+            if(color[i]) continue;          // if already coloured then continue
+            queue<int> q;
+            q.push(i);
+            color[i]=1;
+            while(!q.empty()){
+                int parent=q.front();
+                q.pop();
+                for(int child:graph[parent]){
+                    if(color[child]==0){
+                        color[child]=-color[parent];
+                        q.push(child);
+                    }
+                    else{
+                        if(color[parent]==color[child]) return false;    
+                        // if parent and child have same colour then return false;
+                    }
                 }
             }
-            q.pop();
-            currentColor = -1*currentColor;   
-        } 
-        return true;     
-    }
-    
-    bool isBipartite(vector<vector<int>>& graph){
-        
-        int n = graph.size();
-        int ans = true;
-        vector<int> color(n, 0);
-        
-        for(int i = 0; i < n; i++){
-            
-            if(color[i] == 0){
-                ans = (ans && isBipartiteHelper(graph, color, i));
-                if(!ans) break;
-            }    
         }
-        return ans;
+        return true;
     }
 };
+//     bool isBipartiteDFS(vector<vector<int>>& graph, int color[], int node){
+//         if (color[node]==-1) color[node]=1;
+        
+//         for (auto it: graph[node]){
+//             if(color[it]==-1){
+//                 color[it]=1-color[node];
+//                 if(!isBipartiteDFS(graph, color, it)) 
+//                     return false;
+//                 else if(color[it]==color[node]) 
+//                     return false;
+//             }
+//         }
+//         return true;     
+//     }
+    
+//     bool isBipartite(vector<vector<int>>& graph){
+//         int n = graph.size();
+//         int color[n];
+//         memset(color, -1, sizeof(color));
+        
+//         for(int i = 0; i < n; i++){ 
+//             if(color[i] == -1){
+//                 if(!isBipartiteDFS(graph, color, i)) 
+//                     return false;
+//             }    
+//         }
+//         return true;
+//     }
+// };
