@@ -1,7 +1,7 @@
 class Solution {
 public:
     void combination(int start,int k,int n,vector<int> &temp, vector<vector<int>> &res){
-        if (k<0 || n<0) return;
+        //if (k<0 || n<0) return;
         
         if (k==0 && n==0){
             res.push_back(temp);
