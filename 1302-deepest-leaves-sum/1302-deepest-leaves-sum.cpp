@@ -23,10 +23,10 @@ public:
             int size = q.size();
             for (int i=0; i<size; i++){
                 TreeNode* curr = q.front();
+                q.pop();
                 levelSum += curr->val;
                 if(curr->left!=NULL) q.push(curr->left);
-                if(curr->right!=NULL) q.push(curr->right);
-                q.pop();               
+                if(curr->right!=NULL) q.push(curr->right);               
             }
         }
         return levelSum;
