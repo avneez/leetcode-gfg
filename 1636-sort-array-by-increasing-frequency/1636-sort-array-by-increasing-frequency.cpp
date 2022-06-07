@@ -12,7 +12,7 @@ public:
         }
         nums.clear();
         while(!q.empty()){
-            int freq = -(q.top().first);
+            int freq = -1*q.top().first;
             int elem = q.top().second;
             for(int i=0; i<freq; i++){
                 nums.push_back(elem);
