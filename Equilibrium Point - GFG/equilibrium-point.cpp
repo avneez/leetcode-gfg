@@ -13,15 +13,17 @@ class Solution{
     
         // Your code here
         if(n==1) return 1;
-        int tsum=0;
-        int lsum=0;
-        for (int i = 1; i < n; i++) 
-            tsum += a[i];
+        //prefix sum array
+        for (int i=1; i<n; i++) 
+            a[i] += a[i-1];
+            
+        int tsum=a[n-1];    
        
-        for (int i = 1; i < n-1; i++){
-           tsum -= a[i];
-           lsum += a[i-1];
-           if (tsum == lsum) return i+1;
+        for (int i=1; i<n; i++){
+           int curr_elem = a[i];
+           int prev_elem = a[i-1];
+           if (tsum-curr_elem==prev_elem) 
+                return i+1;
        }
        return -1; 
     }
