@@ -10,15 +10,16 @@ public:
         for(auto &i:mp){
             q.push({-i.second,i.first});
         }
-        nums.clear();
+        
+        vector<int> ans;
         while(!q.empty()){
             int freq = -1*q.top().first;
             int elem = q.top().second;
             for(int i=0; i<freq; i++){
-                nums.push_back(elem);
+                ans.push_back(elem);
             }
             q.pop();
         }
-        return nums;
+        return ans;
     }
 };
