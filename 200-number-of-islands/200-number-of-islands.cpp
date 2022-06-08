@@ -1,8 +1,8 @@
 class Solution {
 public:
 
-    int x[8] = {0,0,1,-1};
-    int y[8] = {1,-1,0,0};
+    int x[4] = {0,0,1,-1};
+    int y[4] = {1,-1,0,0};
     void dfs(int i, int j, vector<vector<char>>& grid, int n, int m){
         if(i<0 or j<0 or i>=n or j>=m or grid[i][j]=='0') return;
 
