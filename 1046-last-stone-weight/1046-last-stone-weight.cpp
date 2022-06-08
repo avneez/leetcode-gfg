@@ -15,7 +15,7 @@ public:
             maxHeap.pop();
             n-=2; //two less stones now
             
-            if(max-smax>0){
+            if(max-smax>=0){
                 maxHeap.push(max-smax);
                 n+=1; // 1 resultant weight stone added
             }
