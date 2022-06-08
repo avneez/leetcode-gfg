@@ -15,7 +15,8 @@ class Solution{
         if(n==1) return 1;
         int tsum=0;
         int lsum=0;
-        for (int i = 1; i < n; i++) tsum += a[i];
+        for (int i = 1; i < n; i++) 
+            tsum += a[i];
        
         for (int i = 1; i < n-1; i++){
            tsum -= a[i];
