@@ -12,9 +12,10 @@ public:
                 while(low<high){
                     if(nums[low]+nums[high]==sum){
                         vector<int> temp;
-                        temp.push_back(nums[i]);
-                        temp.push_back(nums[low]);
-                        temp.push_back(nums[high]);
+                        // temp.push_back(nums[i]);
+                        // temp.push_back(nums[low]);
+                        // temp.push_back(nums[high]);
+                        temp.insert(temp.end(), {nums[i], nums[low], nums[high]});
                         res.push_back(temp);
                     
                         while(low<high and nums[low]==nums[low+1]) low++;
