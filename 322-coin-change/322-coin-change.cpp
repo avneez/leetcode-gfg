@@ -5,10 +5,6 @@ public:
         vector<int> dp(amount+1, INT_MAX);
         dp[0]=0;
         
-        // if(amount==0) return 0;
-        // if(amount<0) return INT_MAX;
-        // if(dp[amount]!=1) return dp[amount];
-        
         for(int i=1; i<=amount; i++){
             for(int j=0; j<n; j++){
                 if(i-coins[j]>=0 and dp[i-coins[j]]!=INT_MAX)
