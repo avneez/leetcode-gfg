@@ -1,19 +1,25 @@
 class Solution {
 public:
     int ans=0;
+
     void dfs(int i, int j, vector<vector<int>>& grid, int bag){
         if(i<0 or j<0 or i>=grid.size() or j>=grid[0].size() or grid[i][j]==0) return;
         
-        bag+=grid[i][j];
-        ans=max(ans, bag);
+        int x[4] ={0,1,-1,0};
+        int y[4] ={1,0,0,-1};
         
         int temp = grid[i][j];
+        bag+=grid[i][j];
         grid[i][j] = 0;
+        ans=max(ans, bag);
         
-        dfs(i+1,j,grid,bag);
-        dfs(i-1,j,grid,bag);
-        dfs(i,j-1,grid,bag);
-        dfs(i,j+1,grid,bag);
+        for(int d=0; d<4; d++){
+            dfs(i+x[d],j+y[d],grid,bag);
+        }
+//         dfs(i+1,j,grid,bag);
+//         dfs(i-1,j,grid,bag);
+//         dfs(i,j-1,grid,bag);
+//         dfs(i,j+1,grid,bag);
         
         grid[i][j]=temp;
     }
@@ -30,35 +36,3 @@ public:
         return ans;
     }
 };
-
-// class Solution {
-// public:
-//     int ans = 0;
-    
-//     void dfs(vector<vector<int>> &grid, int i, int j, int gold)
-//     {
-//         if(i<0 or j<0 or i >= grid.size() or j >= grid[0].size() or grid[i][j] == 0)
-//             return;
-        
-//         gold += grid[i][j];
-//         ans = max(ans, gold);
-        
-//         int temp = grid[i][j];
-//         grid[i][j] = 0;
-
-//         dfs(grid, i+1, j, gold);
-//         dfs(grid, i-1, j, gold);
-//         dfs(grid, i, j+1, gold);
-//         dfs(grid, i, j-1, gold);
-        
-//         grid[i][j] = temp;    // Backtrack
-//     }
-    
-//     int getMaximumGold(vector<vector<int>>& grid) 
-//     {
-//         for(int i=0; i<grid.size(); i++)
-//             for(int j=0; j<grid[0].size(); j++)
-//                 dfs(grid, i, j, 0);
-//         return ans;
-//     }
-// };
