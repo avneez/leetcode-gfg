@@ -30,7 +30,8 @@ public:
         
         for(int i=0; i<m; i++){
             for(int j=0; j<n; j++){
-                dfs(i,j,grid,0);
+                if(grid[i][j]!=0)
+                    dfs(i,j,grid,0);
             }
         }
         return ans;
