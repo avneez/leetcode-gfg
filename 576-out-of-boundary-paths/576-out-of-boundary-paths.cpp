@@ -8,12 +8,12 @@ public:
         if(maxMove<=0) return 0;
         if(dp[startRow][startColumn][maxMove]!=-1) return dp[startRow][startColumn][maxMove];
         
-        int up = dfs(m,n, maxMove-1, startRow+1, startColumn);
-        int down = dfs(m,n, maxMove-1, startRow-1, startColumn);
-        int left = dfs(m,n, maxMove-1, startRow, startColumn-1);
-        int right = dfs(m,n, maxMove-1, startRow, startColumn+1);
+        long long up = dfs(m,n, maxMove-1, startRow+1, startColumn);
+        long long down = dfs(m,n, maxMove-1, startRow-1, startColumn);
+        long long left = dfs(m,n, maxMove-1, startRow, startColumn-1);
+        long long right = dfs(m,n, maxMove-1, startRow, startColumn+1);
         
-        dp[startRow][startColumn][maxMove] = (up%mod + down%mod + left%mod + right%mod)%mod;
+        dp[startRow][startColumn][maxMove] = (up + down + left + right)%mod;
         return dp[startRow][startColumn][maxMove];
     }
     
