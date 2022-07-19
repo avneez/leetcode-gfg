@@ -1,6 +1,7 @@
 class Solution {
 public:
     string digitSum(string s, int k) {
+        if(s.size()<=k) return s;
         while(s.size()>k) {
             string temp=""; 
             for(int i=0; i<s.size(); i=i+k){
