@@ -8,7 +8,7 @@ public:
          }
         for(char s : str[(digits[i]-'0')])
             fun(digits,str,ans,n,i+1,temp+s);
-            temp.pop_back();  //backtrack without this line also running
+        // temp.pop_back();  //backtrack without this line also running
         }
     vector<string> letterCombinations(string digits) {
         if(digits == "")
