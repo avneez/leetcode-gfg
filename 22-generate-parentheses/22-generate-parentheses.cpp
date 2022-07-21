@@ -13,7 +13,7 @@ public:
         }
         
         if(close>0){
-            if(open<close){
+            if(open<close){  //in str more open has been used so for next str, we have less open than close 
                 str.push_back(')');
                 generate(str,open,close-1);
                 str.pop_back();
