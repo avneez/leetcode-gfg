@@ -8,40 +8,36 @@ public:
     int shortestPathBinaryMatrix(vector<vector<int>>& grid) {
         
         int n = grid.size();
-        vector<vector<bool>> visited(n, vector<bool> (n, false));
-        queue<pair<int, int>> q;
-        int ans = 0;
-        int nodesPushed;
+        if(grid[0][0]==1) return -1;
+        if(grid[0][0]==0 and n==1) return 1;
         
-        if(grid[0][0] == 0){
-            q.push({0, 0});
-            visited[0][0] = true;
-        }
-                
+        vector<vector<int>> dir = {{0,1},{1,0},{1,1},{0,-1},{1,-1},{-1,-1},{-1,0},{-1,1}};
+        
+        vector<vector<bool>> visited(n, vector<bool> (n, false));
+        queue<pair<pair<int, int>,int>> q;
+        q.push({{0,0},1});
+        visited[0][0]=true;
+               
         while(!q.empty()){
+            auto p = q.front().first; //{0,0}
+            int x = p.first;
+            int y = p.second;
+            int length = q.front().second; //1
+            q.pop();
             
-            nodesPushed = q.size();
-            ans++;
-            
-            for(int cnt = 0; cnt < nodesPushed; cnt++){
+            for(int d=0; d<8; d++){
+                int newx = x + dir[d][0];
+                int newy = y + dir[d][1];
                 
-                pair<int, int> frontNode = q.front();
-                q.pop();
+                if(isValid(grid,newx,newy,n,visited)){
+                    q.push({{newx,newy},length+1});
+                    visited[newx][newy]=true;
+                    if(newx==n-1 and newy==n-1)
+                        return length+1;
+                }
+            }
             
-                int i = frontNode.first, j = frontNode.second;
-
-                if(i==n-1 and j==n-1) return ans;
-
-                for(int k = i - 1; k <= i + 1 ; k++){
-                    for(int l = j - 1; l <= j + 1; l++){
-                        if(isValid(grid, k, l, n, visited)){
-                            q.push({k, l});
-                            visited[k][l] = true;
-                        }
-                    }
-                }                
-            }               
-        }        
+        }
         return -1;
         
     }
