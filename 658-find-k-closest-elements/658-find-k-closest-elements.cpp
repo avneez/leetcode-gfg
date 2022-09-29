@@ -21,7 +21,7 @@ public:
     
     //binary search approach
     vector<int> findClosestElements(vector<int>& arr, int k, int x) {
-        int l=0,r =arr.size()-k;
+        int l=0, r=arr.size()-k;
         vector<int>ans;
         while(l<r){
             int mid =(l+r)/2;
@@ -32,6 +32,7 @@ public:
                 r=mid; 
             }   
         }
+        
         for(int i=l;i<l+k;i++){
             ans.push_back(arr[i]);
         }
