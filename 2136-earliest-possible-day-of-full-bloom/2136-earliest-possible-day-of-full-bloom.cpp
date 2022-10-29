@@ -17,4 +17,10 @@ public:
         }
         return comp;
     }
+    
+    // int pt=0;
+    // for(int i:plantTime) pt+=i;
+    // int mini= *min_element(growTime.begin(),growTime.end());
+    // return pt+mini;
+    // }
 };
