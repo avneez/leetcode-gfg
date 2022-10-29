@@ -10,7 +10,7 @@ public:
         for(int i=0; i<n; i++){
             vg.push_back({growTime[i],plantTime[i]});
         }
-        sort(vg.begin(),vg.end(),greater<pair<int,int>>());
+        sort(vg.rbegin(),vg.rend());
         for(int i=0; i<n; i++){
             pt+=vg[i].second;
             comp= max(comp,pt+vg[i].first); 
