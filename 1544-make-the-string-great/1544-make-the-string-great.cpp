@@ -1,27 +1,15 @@
 class Solution {
 public:
-    string makeGood(string s) {
-        // if s has less than 2 characters, we just return itself.
-        while (s.size() > 1) {
-            // 'find' records if we find any pair to remove.
-            bool find = false;
+    string makeGood(string s) { 
+        string ans;    
+        for(int i = 0 ; i < s.size() ; i++) {
+            ans.push_back(s[i]);
             
-            // Check every two adjacent characters, currChar and nextChar.
-            for (int i = 0; i < s.size() - 1; ++i) {
-                char currChar = s[i], nextChar = s[i + 1];
-                
-                // If they make a pair, remove them from 's' and let 'find = true'.
-                if (abs(currChar - nextChar) == 32) {
-                    s = s.substr(0, i) + s.substr(i + 2);
-                    find = true;
-                    break;
-                }
+            while(ans.size() && (ans.back()==s[i+1]+32 || ans.back()==s[i+1]-32)){
+                ans.pop_back();
+                i++;
             }
-            
-            // If we cannot find any pair to remove, break the loop. 
-            if (!find)
-                break;
         }
-        return s;
+        return ans;
     }
 };
