@@ -1,7 +1,7 @@
 class Solution {
 public:
     
-	void permuteRecursive(vector<int> &num, int index, vector<vector<int> > &result)	{
+	void permuteRecursive(vector<int> &num, int index, vector<vector<int>> &result)	{
 		if (index >= num.size()) {
 		    result.push_back(num);
 		    return;
@@ -14,9 +14,8 @@ public:
 		}
     }
     
-    vector<vector<int> > permute(vector<int> &num) {
-	    vector<vector<int> > result;
-	    
+    vector<vector<int>> permute(vector<int> &num) {
+	    vector<vector<int>> result;
 	    permuteRecursive(num, 0, result);
 	    return result;
     }
