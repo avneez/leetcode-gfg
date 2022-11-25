@@ -1,6 +1,9 @@
 class Solution {
 public:
     bool dfs(int i, int j, int c, vector<vector<char>>& board, string word){
+        int x[4] = {0,1,-1,0};
+        int y[4] = {1,0,0,-1};
+        
         int m = board.size();
         int n = board[0].size();
         
@@ -10,7 +13,11 @@ public:
         char temp = board[i][j];
         board[i][j] = '1'; //mark visited
         
-        int ans = dfs(i+1,j,c+1,board, word) or dfs(i-1,j,c+1,board, word) or dfs(i,j+1,c+1,board, word) or dfs(i,j-1,c+1,board, word);
+        bool ans;
+        for(int d=0; d<4; d++){
+            ans += dfs(i+x[d],j+y[d],c+1,board,word);
+        }
+        // int ans = dfs(i+1,j,c+1,board, word) or dfs(i-1,j,c+1,board, word) or dfs(i,j+1,c+1,board, word) or dfs(i,j-1,c+1,board, word);
         
         board[i][j]=temp;
         return ans;
