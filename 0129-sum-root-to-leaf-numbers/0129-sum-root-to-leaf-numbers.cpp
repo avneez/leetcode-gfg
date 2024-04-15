@@ -11,18 +11,24 @@
  */
 class Solution {
 public:
-    int sum = 0;
-    void dfs(TreeNode* root, int digit) {
+    string sum = "";
+    int ans = 0;
+    // vector<int> v;
+    void dfs(TreeNode* root, string digit) {
         if (!root) return;
-        digit = root->val + 10*digit;
-        if (!root->left && !root->right)
-            sum+=digit;    
+        digit += to_string(root->val);
+        if (!root->left && !root->right){
+            sum+=digit;
+            ans += (stoi(sum));
+        }
         dfs(root->left, digit);
         dfs(root->right, digit);
+        sum="";
     }
     
     int sumNumbers(TreeNode* root) {
-        dfs(root,0);
-        return sum;
+        dfs(root,"");
+        // for(auto i:v) ans+=i;
+        return ans;
     }
 };
